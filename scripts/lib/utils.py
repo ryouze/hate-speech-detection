@@ -5,7 +5,6 @@ Handles repeating code that is used in different parts of the project.
 """
 
 from pathlib import Path as _Path
-from sys import stdout as _stdout
 from time import time as _time
 
 from loguru import logger as _logger
@@ -13,23 +12,8 @@ from loguru import logger as _logger
 # Public objects
 __all__: list[str] = [
     # VSCode: Sort lines in descending order
-    "configure_logging_level",
     "create_timestamped_log_file",
 ]
-
-
-def configure_logging_level(
-    verbose: bool,
-) -> None:
-    """
-    Set the logging level based on the verbose flag.
-
-    Args:
-        verbose (bool): Flag to enable verbose logging. If True, set the log level to DEBUG, otherwise, set it to INFO.
-    """
-    if not verbose:
-        _logger.remove()
-        _logger.add(_stdout, level="INFO")
 
 
 def create_timestamped_log_file(
