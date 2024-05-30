@@ -1,0 +1,3 @@
+[submodule "modules/BAN-PL"]
+	path = modules/BAN-PL
+	url = https://github.com/ZILiAT-NASK/BAN-PL.git

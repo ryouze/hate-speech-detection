@@ -1,0 +1,6 @@
+datasets       # Download and preprocess datasets (HuggingFace)
+# torch          # Machine learning framework for tensor computations with GPU acceleration
+transformers   # Load models (HuggingFace)
+loguru         # Logging library
+numpy          # Large, multi-dimensional arrays and matrices
+pandas         # Data manipulation and analysis
