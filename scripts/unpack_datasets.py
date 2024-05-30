@@ -6,15 +6,18 @@ Unpacks the BAN-PL `.zip` files into the `datasets` directory as CSV files.
 **Note**: Before running this script, make sure to download the BAN-PL dataset by running 'git submodule update --init --recursive'.
 """
 
-
 from pathlib import Path
 
-from lib import disk, filepaths
+from lib import disk, filepaths, utils
 from loguru import logger
 
 
 @logger.catch  # Add pretty exceptions
 def main() -> None:
+    # Initialize logger with a timestamped log file
+    utils.create_timestamped_log_file(__file__, filepaths.logs)
+
+    # Define the input directory containing the BAN-PL dataset `.zip` files
     input_directory: Path = filepaths.modules / "BAN-PL" / "data"
 
     # Unpack the first version of the dataset (BAN-PL_1.zip)
