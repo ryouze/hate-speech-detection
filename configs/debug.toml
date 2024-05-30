@@ -1,0 +1,4 @@
+name = "debug.toml"
+dataset = "BAN-PL_1.csv"
+dataset_type = 1
+model = "dkleczek/bert-base-polish-cased-v1"
