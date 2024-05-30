@@ -12,6 +12,8 @@ from typing import Any
 from lib import arguments, configurator, filepaths, utils
 from loguru import logger
 
+import datasets
+
 
 @logger.catch  # Add pretty exceptions
 def main() -> None:
@@ -26,8 +28,16 @@ def main() -> None:
         default_file_path=str(filepaths.configs / "default.toml"),
         custom_file_path=str(filepaths.configs / args.config),
     )
-
     logger.info(f"Configuration file loaded: {config}")
+
+    # Load the dataset
+    path_to_dataset: str = str(filepaths.datasets / config["dataset"])
+    logger.info(f"Loading dataset from: {path_to_dataset}")
+    dataset: datasets.dataset_dict.DatasetDict = datasets.load_dataset(  # type: ignore
+        "csv",
+        data_files=path_to_dataset,
+    )
+    print(dataset)
 
     logger.success("All tasks successfully completed")
 
