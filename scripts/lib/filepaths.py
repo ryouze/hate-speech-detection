@@ -13,6 +13,7 @@ __all__: list[str] = [
     "models",
     "modules",
     "root",
+    "logs",
 ]
 
 # ------------------------------------------------------------------------------
@@ -31,3 +32,12 @@ models: _Path = root / "models"
 
 # Path: root/modules/
 modules: _Path = root / "modules"
+
+# Path: root/logs/
+logs: _Path = root / "logs"
+
+
+# ------------------------------------------------------------------------------
+# Recursively create the directories if they don't exist
+for directory in (datasets, models, modules, logs):
+    directory.mkdir(parents=True, exist_ok=True)

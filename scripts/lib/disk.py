@@ -45,9 +45,6 @@ def unpack_and_rename(
             f"File '{zip_file}' does not exist, try running 'git submodule update --init --recursive'"
         )
 
-    # Create the output directory if it doesn't exist
-    output_directory.mkdir(parents=True, exist_ok=True)
-
     # Unpack the specific file from the `.zip` file into the output directory
     try:
         with _ZipFile(zip_file, "r") as f:
