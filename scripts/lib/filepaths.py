@@ -19,7 +19,7 @@ __all__: list[str] = [
 
 # ------------------------------------------------------------------------------
 # Path to the root directory of the project (root/)
-# This assumes that this file is located in the `root/scripts/lib/` directory
+# This assumes that this file is located in the "root/scripts/lib/" directory
 root: _Path = _Path(__file__).resolve().parents[2]
 # ------------------------------------------------------------------------------
 

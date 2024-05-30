@@ -1,7 +1,7 @@
 """
 Script: unpack_datasets.py
 
-Unpacks the BAN-PL `.zip` files into the `datasets` directory as CSV files.
+Unpacks the BAN-PL `.zip` files into the "datasets" directory as CSV files.
 
 **Note**: Before running this script, make sure to download the BAN-PL dataset by running 'git submodule update --init --recursive'.
 """
