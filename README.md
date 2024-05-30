@@ -24,9 +24,12 @@ For our final project in our university's AI course, we were tasked with develop
 
 The project is organized as follows:
 
-- `configs`: Contains the configuration files for training different models.
+- `configs`: Contains the configuration files for training various models.
+- `datasets`: Contains the unpacked [BAN-PL](https://github.com/ZILiAT-NASK/BAN-PL) dataset as CSV files (after running the `unpack_datasets.py` script).
+- `logs`: Contains the logs generated during training (after running any Python script).
+- `models`: Contains the trained models (after running the `train.py` script).
 - `modules`: Contains the [BAN-PL](https://github.com/ZILiAT-NASK/BAN-PL) dataset as a Git submodule.
-- `scripts`: Contains the Python scripts for training the model and running inference.
+- `scripts`: Contains Python scripts for training various models and running inference.
 
 
 ## Tested Systems
