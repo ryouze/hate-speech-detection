@@ -25,7 +25,7 @@ For our final project in our university's AI course, we were tasked with develop
 The project is organized as follows:
 
 - `configs`: Contains the configuration files for training various models.
-- `datasets`: Contains the unpacked [BAN-PL](https://github.com/ZILiAT-NASK/BAN-PL) dataset as CSV files (after running the `unpack_datasets.py` script).
+- `datasets`: Contains the unpacked [BAN-PL](https://github.com/ZILiAT-NASK/BAN-PL) dataset as CSV files (after running the `prepare_datasets.py` script).
 - `logs`: Contains the logs generated during training (after running any Python script).
 - `models`: Contains the trained models (after running the `train.py` script).
 - `modules`: Contains the [BAN-PL](https://github.com/ZILiAT-NASK/BAN-PL) dataset as a Git submodule.
@@ -83,9 +83,9 @@ Follow these steps to setup the project:
     ```
 
 6. **Unpack the datasets**:
-    Use the `unpack_datasets.py` script to unpack the BAN-PL `.zip` files into the `datasets` directory as CSV files.
+    Use the `prepare_datasets.py` script to prepare the datasets, storing the results as CSV files in the `datasets` directory.
     ```bash
-    python3 scripts/unpack_datasets.py
+    python3 scripts/prepare_datasets.py
     ```
 
 After successful setup, you can proceed to the next section.
