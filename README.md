@@ -64,7 +64,7 @@ Follow these steps to setup the project:
     ```
 
 3. **Activate the virtual environment**:
-    Execute the shell script to enable the virtual environment.
+    Execute a shell script to enable the virtual environment.
     ```bash
     source ~/.local/env/hate-speech-detection/bin/activate
     ```
@@ -88,15 +88,15 @@ Follow these steps to setup the project:
     python3 scripts/unpack_datasets.py
     ```
 
-After successful setup, you can move to the next section to train the model.
+After successful setup, you can proceed to the next section.
 
 
 ## Training the Model
 
-To train the model, run:
+To train the model, run the `train.py` script. You must pass the name of the config file as an argument (e.g., `debug.toml`). Optionally, you can include the `--verbose` flag to enable verbose logging.
 
 ```bash
-python3 scripts/train.py
+python3 scripts/train.py debug.toml
 ```
 
 
