@@ -2,7 +2,7 @@
 
 hate-speech-detection is a collection of exploratory scripts to train and predict hate speech in Polish text using machine learning.
 
-It uses the [BAN-PL](https://github.com/ZILiAT-NASK/BAN-PL) dataset. It is "the first publicly available dataset of offensive and harmful content banned from a web service Wykop.pl (often called the 'Polish Reddit') by professional moderators".
+It uses the [BAN-PL](https://github.com/ZILiAT-NASK/BAN-PL) dataset. According to the dataset's description, it is the "first publicly available dataset of offensive and harmful content banned from a web service Wykop.pl (often called the 'Polish Reddit') by professional moderators".
 
 ![A terminator holding an iPhone with angry emojis on its screen](/assets/hero.jpeg)
 
