@@ -1,0 +1,6 @@
+# Override the language statistics of the GitHub repository.
+# The line below marks all Jupyter Notebook files as "generated" code.
+# Generated code is typically not included in the language statistics of a repository.
+# This helps to provide a more accurate estimate of the languages used in the repository's code.
+# Reference: https://github.com/github/linguist/blob/master/docs/overrides.md#generated-code
+*.ipynb linguist-generated
