@@ -4,14 +4,15 @@ Module: configurator.py
 Handles configuration using [Tom's Obvious Minimal Language](https://toml.io/en/) files.
 """
 
+import tomllib as _tomllib
 from pathlib import Path as _Path
 from typing import Any as _Any
 
-import tomllib as _tomllib
 from loguru import logger as _logger
 
 # Public objects
 __all__: list[str] = [
+    # VSCode: Sort lines in descending order
     "load_config",
 ]
 

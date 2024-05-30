@@ -49,6 +49,6 @@ def get_train_arguments() -> _argparse.Namespace:
     # Raise if the config file does not end with ".toml" file extension
     if not args.config.endswith(".toml"):
         raise ValueError(
-            f"Config name must end with '.toml' (e.g., 'oscar.toml'): {args.config}",
+            f"Config name must end with '.toml' (e.g., 'bert.toml'): {args.config}",
         )
     return args

@@ -12,6 +12,7 @@ from loguru import logger as _logger
 
 # Public objects
 __all__: list[str] = [
+    # VSCode: Sort lines in descending order
     "unpack_and_rename",
 ]
 
