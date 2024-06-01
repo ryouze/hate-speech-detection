@@ -1,9 +1,9 @@
 """
 Script: train.py
 
-Trains a transformer-based model (DistilBERT) for predicting if a given text is hateful or not.
+Trains a [DistilBERT](https://huggingface.co/docs/transformers/en/model_doc/distilbert) for predicting if a given text is hateful or not.
 
-If a text is not hateful, the "Class" column will be 0. If a text is hateful, the "Class" column will be 1.
+If a text is not hateful, the "labels" column will be 0. If a text is hateful, the "labels" column will be 1.
 """
 
 import numpy as np
@@ -41,8 +41,8 @@ print("Reduced size:", len(df))
 train_df, test_df = train_test_split(df, test_size=0.2, random_state=42)
 
 # Convert DataFrame to Hugging Face Dataset
-train_dataset = Dataset.from_pandas(train_df)
-test_dataset = Dataset.from_pandas(test_df)
+train_dataset = Dataset.from_pandas(train_df)  # type: ignore
+test_dataset = Dataset.from_pandas(test_df)  # type: ignore
 
 # Load the tokenizer and model
 tokenizer = AutoTokenizer.from_pretrained("Geotrend/distilbert-base-pl-cased")
@@ -53,7 +53,7 @@ model = AutoModelForSequenceClassification.from_pretrained(
 
 # Tokenize the dataset
 def tokenize_function(examples):
-    return tokenizer(examples["Text"], truncation=True, padding=True)
+    return tokenizer(examples["text"], truncation=True, padding=True)
 
 
 train_dataset = train_dataset.map(tokenize_function, batched=True)
@@ -61,10 +61,6 @@ test_dataset = test_dataset.map(tokenize_function, batched=True)
 
 # Define the data collator
 data_collator = DataCollatorWithPadding(tokenizer=tokenizer)
-
-# Ensure the datasets have the 'labels' field
-train_dataset = train_dataset.rename_column("Class", "labels")
-test_dataset = test_dataset.rename_column("Class", "labels")
 
 
 # Define the compute metrics function
@@ -80,8 +76,8 @@ def compute_metrics(p):
 
 # Define the training arguments
 training_args = TrainingArguments(
-    output_dir="./results",
-    evaluation_strategy="epoch",
+    output_dir=str(filepaths.models / "results"),
+    eval_strategy="epoch",
     learning_rate=5e-5,  # Increased learning rate
     per_device_train_batch_size=32,  # Larger batch size
     per_device_eval_batch_size=32,  # Larger evaluation batch size
@@ -89,6 +85,8 @@ training_args = TrainingArguments(
     weight_decay=0.01,
     gradient_accumulation_steps=2,  # Simulate larger batch size
     fp16=torch.cuda.is_available(),  # Enable mixed precision training if GPU is available
+    logging_dir=str(filepaths.models / "logs"),
+    logging_steps=1,
 )
 
 # Initialize the Trainer
@@ -106,5 +104,5 @@ trainer = Trainer(
 trainer.train()
 
 # Save the model
-model.save_pretrained("./models")
-tokenizer.save_pretrained("./models")
+model.save_pretrained(filepaths.models)
+tokenizer.save_pretrained(filepaths.models)
