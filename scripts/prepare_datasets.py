@@ -34,7 +34,7 @@ def main() -> None:
         output_file_name="BAN-PL_1.csv",
     )
 
-    # Sanitize the dataset and overwrite the original file
+    # Sanitize the dataset and overwrite the original file (+ rename the columns)
     sanitize_ban1(filepaths.datasets / "BAN-PL_1.csv")
 
     # Unpack the second version of the dataset (BAN-PL_2.zip)
@@ -51,7 +51,7 @@ def main() -> None:
         output_file_name="BAN-PL_2.csv",
     )
 
-    # Sanitize the dataset and overwrite the original file
+    # Sanitize the dataset and overwrite the original file (+ rename the columns)
     sanitize_ban2(filepaths.datasets / "BAN-PL_2.csv")
 
     logger.success("All tasks successfully completed")
@@ -61,7 +61,7 @@ def sanitize_ban1(
     csv_path: Path,
 ) -> None:
     """
-    Sanitize the BAN-PL_1 dataset by removing the "id" column and cleaning the "Text" column.
+    Sanitize the BAN-PL_1 dataset by removing the "id" column and cleaning the "Text" column. Finally, the "Text" and "Class" columns are renamed to "text" and "labels".
 
     Args:
         csv_path (Path): Path to the BAN-PL_1 dataset CSV file. It will be modified in-place.
@@ -75,6 +75,16 @@ def sanitize_ban1(
     # Remove newlines and trailing whitespaces
     df["Text"] = df["Text"].str.replace("\n", " ").str.strip()  # type: ignore
 
+    # Rename the columns (required by the Hugging Face library)
+    df.rename(
+        columns={
+            # from : to
+            "Text": "text",
+            "Class": "labels",
+        },
+        inplace=True,
+    )
+
     # Save to disk
     df.to_csv(csv_path, index=False)  # type: ignore
 
@@ -83,7 +93,7 @@ def sanitize_ban2(
     csv_path: Path,
 ) -> None:
     """
-    Sanitize the BAN-PL_2 dataset by removing the "Unnamed: 0" and "id" columns, and cleaning the "Text" column.
+    Sanitize the BAN-PL_2 dataset by removing the "Unnamed: 0" and "id" columns, and cleaning the "Text" column. Finally, the "Text", "Class" and "Reason" columns are renamed to "text", "labels" and "reason".
 
     Args:
         csv_path (Path): Path to the BAN-PL_2 dataset CSV file. It will be modified in-place.
@@ -96,6 +106,17 @@ def sanitize_ban2(
 
     # Remove newlines and trailing whitespaces
     df["Text"] = df["Text"].str.replace("\n", " ").str.strip()  # type: ignore
+
+    # Rename the columns (required by the Hugging Face library)
+    df.rename(
+        columns={
+            # from : to
+            "Text": "text",
+            "Class": "labels",
+            "Reason": "reason",
+        },
+        inplace=True,
+    )
 
     # Save to disk
     df.to_csv(csv_path, index=False)  # type: ignore
