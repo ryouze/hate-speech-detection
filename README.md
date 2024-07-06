@@ -52,38 +52,41 @@ To run this project, you'll need:
 Follow these steps to setup the project:
 
 1. **Clone the repository**:
+
     ```bash
     git clone https://github.com/ryouze/hate-speech-detection.git
     ```
 
-2. **Create the virtual environment**:
-    First, create a directory to store the virtual environments. Then, create a Python virtual environment for the project.
+2. **Download the dataset**:
+
+    To download the [BAN-PL](https://github.com/ZILiAT-NASK/BAN-PL) repository as a Git submodule, use the following commands:
+
+    ```bash
+    cd hate-speech-detection
+    git submodule update --init --recursive
+    ```
+
+3. **Create a virtual environment (optional)**:
+
     ```bash
     mkdir -p ~/.local/env/
     python3 -m venv ~/.local/env/hate-speech-detection
     ```
 
-3. **Activate the virtual environment**:
-    Execute a shell script to enable the virtual environment.
     ```bash
     source ~/.local/env/hate-speech-detection/bin/activate
     ```
 
 4. **Install the dependencies**:
-    Install the required dependencies from the `requirements.txt` file.
+
     ```bash
-    cd hate-speech-detection
     pip install -r requirements.txt
     ```
 
-5. **Update the submodules**:
-    Download the [BAN-PL](https://github.com/ZILiAT-NASK/BAN-PL) repository as a Git submodule.
-    ```bash
-    git submodule update --init --recursive
-    ```
+5. **Unpack the datasets**:
 
-6. **Unpack the datasets**:
     Use the `prepare_datasets.py` script to prepare the datasets, storing the results as CSV files in the `datasets` directory.
+    
     ```bash
     python3 scripts/prepare_datasets.py
     ```
@@ -93,7 +96,7 @@ After successful setup, you can proceed to the next section.
 
 ## Training the Model
 
-To train the model, run the `train.py` script. You must pass the name of the config file as an argument (e.g., `debug.toml`). Optionally, you can include the `--verbose` flag to enable verbose logging.
+To train the model, run the `train.py` script. You must pass the name of the config file as an argument (e.g., `debug.toml`). Optionally, you can include the `--verbose` flag to enable verbose logging. This will train the model on a down-stream task for classifying text as hate speech or not (it was originaly trained on a language modeling task). The trained model will be saved in the `models` directory.
 
 ```bash
 python3 scripts/train.py debug.toml
